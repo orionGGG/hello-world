@@ -14,7 +14,7 @@ int main(){
 		for(int j=1;j<=a;j++){
 			if(i*a==j*b){
 				i=a+1;
-				printf("最大公倍数为%d",j*b);
+				printf("最小公倍数为%d",j*b);
 			}
 		}
 	}
