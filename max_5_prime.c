@@ -1,3 +1,77 @@
-//å°æ˜Žæœ‰ 5 å¼ æ•°å­—å¡ç‰‡ï¼Œä¸Šé¢åˆ†åˆ«ä¸ºæ•°å­— 1ï¼Œ 2ï¼Œ 3ï¼Œ 6ï¼Œ 9ã€‚å°æ˜Žæƒ³ç”¨è¿™ 5 å¼ æ•°å­—å¡ç‰‡ç»„æˆä¸€ä¸ªæœ€å¤§çš„ 5 ä½
-//ç´ æ•°ï¼Œè¿™ä¸ªäº”ä½æ•°æ˜¯_______ã€‚
-//ç¼–ç¨‹ï¼šä»»æ„è¾“å…¥5ä¸ªæ•°å­—ï¼Œå°†å®ƒä»¬ç»„åˆä¸ºæœ€å¤§çš„5ä½ç´ æ•°è¾“å‡ºã€‚å¦‚æžœä¸å­˜åœ¨5ä½ç´ æ•°ï¼Œåˆ™è¾“å‡ºERRORã€‚
+//Ð¡Ã÷ÓÐ 5 ÕÅÊý×Ö¿¨Æ¬£¬ÉÏÃæ·Ö±ðÎªÊý×Ö 1£¬ 2£¬ 3£¬ 6£¬ 9¡£Ð¡Ã÷ÏëÓÃÕâ 5 ÕÅÊý×Ö¿¨Æ¬×é³ÉÒ»¸ö×î´óµÄ 5 Î»
+//ËØÊý£¬Õâ¸öÎåÎ»ÊýÊÇ_______¡£
+//±à³Ì£ºÈÎÒâÊäÈë5¸öÊý×Ö£¬½«ËüÃÇ×éºÏÎª×î´óµÄ5Î»ËØÊýÊä³ö¡£Èç¹û²»´æÔÚ5Î»ËØÊý£¬ÔòÊä³öERROR¡£
+#include<stdio.h>
+#include<stdbool.h>
+void swap(int a , int b)
+{
+	int temp;
+	temp = a;
+	a = b;
+	b = temp;
+ } 
+void perm(int list[] , int k ,int m,int a[]) 
+{
+	int n=0;
+	if(k==m)
+	{
+		for(int i=0 ;i<=m ;i++)
+		{
+			a[n]=a[n]*10+list[i];
+		}
+		n++; 
+	 } 
+	 else{
+	 	for(int i=k;i<=m;i++)
+	 	{
+	 		swap(list[i],list[k]);
+	 		perm(list,k+1,m,a);
+	 		swap(list[i] , list[k]);
+		 }
+	 }
+	 
+}
+bool ss(int a)
+{
+	bool k=true;
+	for(int i=2;i<a;i++)
+	{
+		if(a%i==0)
+		{
+			k=false;
+		}
+	}
+	return k;
+}
+int main()
+{
+	int a[5];
+	int b[120];
+	int c[120];
+	int m=0;
+	for(int i=0;i<5;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+	perm(a,0,4,b);
+	for(int i=0;i<120;i++)
+	{
+		if(ss(b[i]))
+		{
+			c[m++]=b[i];
+		}
+	}
+	if(m==0)
+	printf("ERROR");
+	int max=c[0];
+	for(int i=0;i<m;i++)
+	{
+		if(max<c[i])
+		{
+			max=c[i];
+		}
+	}
+	if(m>0)
+	printf("%d",max);
+	return 0;
+ } 
